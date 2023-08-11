@@ -1,0 +1,1852 @@
+
+
+Microchip MPLAB XC8 Assembler V2.40 build 20220703182018 
+                                                                                               Tue Aug 08 15:47:30 2023
+
+Microchip MPLAB XC8 C Compiler v2.40 (Free license) build 20220703182018 Og1 
+     1                           	processor	16F887
+     2                           	pagewidth 120
+     3                           	opt	flic
+     4                           	psect	cinit,global,class=CODE,merge=1,delta=2
+     5                           	psect	bssCOMMON,global,class=COMMON,space=1,delta=1,noexec
+     6                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1,noexec
+     7                           	psect	cstackBANK0,global,class=BANK0,space=1,delta=1,noexec
+     8                           	psect	maintext,global,class=CODE,split=1,delta=2
+     9                           	psect	text1,local,class=CODE,merge=1,delta=2
+    10                           	psect	text2,local,class=CODE,merge=1,delta=2
+    11                           	psect	text3,local,class=CODE,merge=1,delta=2
+    12                           	psect	text4,local,class=CODE,merge=1,delta=2
+    13                           	psect	text5,local,class=CODE,merge=1,delta=2
+    14                           	psect	intentry,global,class=CODE,delta=2
+    15                           	psect	idloc,global,abs,ovrld,class=IDLOC,space=5,delta=2,noexec
+    16                           	psect	config,global,abs,ovrld,class=CONFIG,space=4,delta=2,noexec
+    17                           	dabs	1,0x7E,2
+    18     0000                     
+    19                           ; Generated 22/03/2023 GMT
+    20                           ; 
+    21                           ; Copyright © 2023, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    22                           ; All rights reserved.
+    23                           ; 
+    24                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+      +                          ip").
+    25                           ; 
+    26                           ; Redistribution and use in source and binary forms, with or without modification, are
+    27                           ; permitted provided that the following conditions are met:
+    28                           ; 
+    29                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+      +                          t of
+    30                           ;        conditions and the following disclaimer.
+    31                           ; 
+    32                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+      +                          list
+    33                           ;        of conditions and the following disclaimer in the documentation and/or other
+    34                           ;        materials provided with the distribution. Publication is not required when
+    35                           ;        this file is used in an embedded application.
+    36                           ; 
+    37                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+      +                          is
+    38                           ;        software without specific prior written permission.
+    39                           ; 
+    40                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    41                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+      +                          OR
+    42                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+      +                          T,
+    43                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    44                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    45                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+      +                          RICT
+    46                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+      +                          SE OF
+    47                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    48                           ; 
+    49                           ; 
+    50                           ; Code-generator required, PIC16F887 Definitions
+    51                           ; 
+    52                           ; SFR Addresses
+    53     0000                     	;# 
+    54     0001                     	;# 
+    55     0002                     	;# 
+    56     0003                     	;# 
+    57     0004                     	;# 
+    58     0005                     	;# 
+    59     0006                     	;# 
+    60     0007                     	;# 
+    61     0008                     	;# 
+    62     0009                     	;# 
+    63     000A                     	;# 
+    64     000B                     	;# 
+    65     000C                     	;# 
+    66     000D                     	;# 
+    67     000E                     	;# 
+    68     000E                     	;# 
+    69     000F                     	;# 
+    70     0010                     	;# 
+    71     0011                     	;# 
+    72     0012                     	;# 
+    73     0013                     	;# 
+    74     0014                     	;# 
+    75     0015                     	;# 
+    76     0015                     	;# 
+    77     0016                     	;# 
+    78     0017                     	;# 
+    79     0018                     	;# 
+    80     0019                     	;# 
+    81     001A                     	;# 
+    82     001B                     	;# 
+    83     001B                     	;# 
+    84     001C                     	;# 
+    85     001D                     	;# 
+    86     001E                     	;# 
+    87     001F                     	;# 
+    88     0081                     	;# 
+    89     0085                     	;# 
+    90     0086                     	;# 
+    91     0087                     	;# 
+    92     0088                     	;# 
+    93     0089                     	;# 
+    94     008C                     	;# 
+    95     008D                     	;# 
+    96     008E                     	;# 
+    97     008F                     	;# 
+    98     0090                     	;# 
+    99     0091                     	;# 
+   100     0092                     	;# 
+   101     0093                     	;# 
+   102     0093                     	;# 
+   103     0093                     	;# 
+   104     0094                     	;# 
+   105     0095                     	;# 
+   106     0096                     	;# 
+   107     0097                     	;# 
+   108     0098                     	;# 
+   109     0099                     	;# 
+   110     009A                     	;# 
+   111     009B                     	;# 
+   112     009C                     	;# 
+   113     009D                     	;# 
+   114     009E                     	;# 
+   115     009F                     	;# 
+   116     0105                     	;# 
+   117     0107                     	;# 
+   118     0108                     	;# 
+   119     0109                     	;# 
+   120     010C                     	;# 
+   121     010C                     	;# 
+   122     010D                     	;# 
+   123     010E                     	;# 
+   124     010F                     	;# 
+   125     0185                     	;# 
+   126     0187                     	;# 
+   127     0188                     	;# 
+   128     0189                     	;# 
+   129     018C                     	;# 
+   130     018D                     	;# 
+   131     0000                     	;# 
+   132     0001                     	;# 
+   133     0002                     	;# 
+   134     0003                     	;# 
+   135     0004                     	;# 
+   136     0005                     	;# 
+   137     0006                     	;# 
+   138     0007                     	;# 
+   139     0008                     	;# 
+   140     0009                     	;# 
+   141     000A                     	;# 
+   142     000B                     	;# 
+   143     000C                     	;# 
+   144     000D                     	;# 
+   145     000E                     	;# 
+   146     000E                     	;# 
+   147     000F                     	;# 
+   148     0010                     	;# 
+   149     0011                     	;# 
+   150     0012                     	;# 
+   151     0013                     	;# 
+   152     0014                     	;# 
+   153     0015                     	;# 
+   154     0015                     	;# 
+   155     0016                     	;# 
+   156     0017                     	;# 
+   157     0018                     	;# 
+   158     0019                     	;# 
+   159     001A                     	;# 
+   160     001B                     	;# 
+   161     001B                     	;# 
+   162     001C                     	;# 
+   163     001D                     	;# 
+   164     001E                     	;# 
+   165     001F                     	;# 
+   166     0081                     	;# 
+   167     0085                     	;# 
+   168     0086                     	;# 
+   169     0087                     	;# 
+   170     0088                     	;# 
+   171     0089                     	;# 
+   172     008C                     	;# 
+   173     008D                     	;# 
+   174     008E                     	;# 
+   175     008F                     	;# 
+   176     0090                     	;# 
+   177     0091                     	;# 
+   178     0092                     	;# 
+   179     0093                     	;# 
+   180     0093                     	;# 
+   181     0093                     	;# 
+   182     0094                     	;# 
+   183     0095                     	;# 
+   184     0096                     	;# 
+   185     0097                     	;# 
+   186     0098                     	;# 
+   187     0099                     	;# 
+   188     009A                     	;# 
+   189     009B                     	;# 
+   190     009C                     	;# 
+   191     009D                     	;# 
+   192     009E                     	;# 
+   193     009F                     	;# 
+   194     0105                     	;# 
+   195     0107                     	;# 
+   196     0108                     	;# 
+   197     0109                     	;# 
+   198     010C                     	;# 
+   199     010C                     	;# 
+   200     010D                     	;# 
+   201     010E                     	;# 
+   202     010F                     	;# 
+   203     0185                     	;# 
+   204     0187                     	;# 
+   205     0188                     	;# 
+   206     0189                     	;# 
+   207     018C                     	;# 
+   208     018D                     	;# 
+   209     0000                     	;# 
+   210     0001                     	;# 
+   211     0002                     	;# 
+   212     0003                     	;# 
+   213     0004                     	;# 
+   214     0005                     	;# 
+   215     0006                     	;# 
+   216     0007                     	;# 
+   217     0008                     	;# 
+   218     0009                     	;# 
+   219     000A                     	;# 
+   220     000B                     	;# 
+   221     000C                     	;# 
+   222     000D                     	;# 
+   223     000E                     	;# 
+   224     000E                     	;# 
+   225     000F                     	;# 
+   226     0010                     	;# 
+   227     0011                     	;# 
+   228     0012                     	;# 
+   229     0013                     	;# 
+   230     0014                     	;# 
+   231     0015                     	;# 
+   232     0015                     	;# 
+   233     0016                     	;# 
+   234     0017                     	;# 
+   235     0018                     	;# 
+   236     0019                     	;# 
+   237     001A                     	;# 
+   238     001B                     	;# 
+   239     001B                     	;# 
+   240     001C                     	;# 
+   241     001D                     	;# 
+   242     001E                     	;# 
+   243     001F                     	;# 
+   244     0081                     	;# 
+   245     0085                     	;# 
+   246     0086                     	;# 
+   247     0087                     	;# 
+   248     0088                     	;# 
+   249     0089                     	;# 
+   250     008C                     	;# 
+   251     008D                     	;# 
+   252     008E                     	;# 
+   253     008F                     	;# 
+   254     0090                     	;# 
+   255     0091                     	;# 
+   256     0092                     	;# 
+   257     0093                     	;# 
+   258     0093                     	;# 
+   259     0093                     	;# 
+   260     0094                     	;# 
+   261     0095                     	;# 
+   262     0096                     	;# 
+   263     0097                     	;# 
+   264     0098                     	;# 
+   265     0099                     	;# 
+   266     009A                     	;# 
+   267     009B                     	;# 
+   268     009C                     	;# 
+   269     009D                     	;# 
+   270     009E                     	;# 
+   271     009F                     	;# 
+   272     0105                     	;# 
+   273     0107                     	;# 
+   274     0108                     	;# 
+   275     0109                     	;# 
+   276     010C                     	;# 
+   277     010C                     	;# 
+   278     010D                     	;# 
+   279     010E                     	;# 
+   280     010F                     	;# 
+   281     0185                     	;# 
+   282     0187                     	;# 
+   283     0188                     	;# 
+   284     0189                     	;# 
+   285     018C                     	;# 
+   286     018D                     	;# 
+   287     0000                     	;# 
+   288     0001                     	;# 
+   289     0002                     	;# 
+   290     0003                     	;# 
+   291     0004                     	;# 
+   292     0005                     	;# 
+   293     0006                     	;# 
+   294     0007                     	;# 
+   295     0008                     	;# 
+   296     0009                     	;# 
+   297     000A                     	;# 
+   298     000B                     	;# 
+   299     000C                     	;# 
+   300     000D                     	;# 
+   301     000E                     	;# 
+   302     000E                     	;# 
+   303     000F                     	;# 
+   304     0010                     	;# 
+   305     0011                     	;# 
+   306     0012                     	;# 
+   307     0013                     	;# 
+   308     0014                     	;# 
+   309     0015                     	;# 
+   310     0015                     	;# 
+   311     0016                     	;# 
+   312     0017                     	;# 
+   313     0018                     	;# 
+   314     0019                     	;# 
+   315     001A                     	;# 
+   316     001B                     	;# 
+   317     001B                     	;# 
+   318     001C                     	;# 
+   319     001D                     	;# 
+   320     001E                     	;# 
+   321     001F                     	;# 
+   322     0081                     	;# 
+   323     0085                     	;# 
+   324     0086                     	;# 
+   325     0087                     	;# 
+   326     0088                     	;# 
+   327     0089                     	;# 
+   328     008C                     	;# 
+   329     008D                     	;# 
+   330     008E                     	;# 
+   331     008F                     	;# 
+   332     0090                     	;# 
+   333     0091                     	;# 
+   334     0092                     	;# 
+   335     0093                     	;# 
+   336     0093                     	;# 
+   337     0093                     	;# 
+   338     0094                     	;# 
+   339     0095                     	;# 
+   340     0096                     	;# 
+   341     0097                     	;# 
+   342     0098                     	;# 
+   343     0099                     	;# 
+   344     009A                     	;# 
+   345     009B                     	;# 
+   346     009C                     	;# 
+   347     009D                     	;# 
+   348     009E                     	;# 
+   349     009F                     	;# 
+   350     0105                     	;# 
+   351     0107                     	;# 
+   352     0108                     	;# 
+   353     0109                     	;# 
+   354     010C                     	;# 
+   355     010C                     	;# 
+   356     010D                     	;# 
+   357     010E                     	;# 
+   358     010F                     	;# 
+   359     0185                     	;# 
+   360     0187                     	;# 
+   361     0188                     	;# 
+   362     0189                     	;# 
+   363     018C                     	;# 
+   364     018D                     	;# 
+   365     001E                     _ADRESH	set	30
+   366     001F                     _ADCON0bits	set	31
+   367     0006                     _PORTBbits	set	6
+   368     0009                     _PORTEbits	set	9
+   369     0005                     _PORTAbits	set	5
+   370     0014                     _SSPCON	set	20
+   371     0006                     _PORTB	set	6
+   372     0008                     _PORTD	set	8
+   373     0013                     _SSPBUF	set	19
+   374     0014                     _SSPCONbits	set	20
+   375     000C                     _PIR1bits	set	12
+   376     0066                     _ADIF	set	102
+   377     0063                     _SSPIF	set	99
+   378     005E                     _PEIE	set	94
+   379     005F                     _GIE	set	95
+   380     009F                     _ADCON1bits	set	159
+   381     0086                     _TRISBbits	set	134
+   382     0089                     _TRISEbits	set	137
+   383     0085                     _TRISAbits	set	133
+   384     0091                     _SSPCON2bits	set	145
+   385     0087                     _TRISCbits	set	135
+   386     0094                     _SSPSTAT	set	148
+   387     0093                     _SSPADD	set	147
+   388     0091                     _SSPCON2	set	145
+   389     0088                     _TRISD	set	136
+   390     0086                     _TRISB	set	134
+   391     0094                     _SSPSTATbits	set	148
+   392     0463                     _SSPIE	set	1123
+   393     043C                     _TRISC4	set	1084
+   394     043B                     _TRISC3	set	1083
+   395     04A0                     _BF	set	1184
+   396     0189                     _ANSELHbits	set	393
+   397     0188                     _ANSELbits	set	392
+   398     0189                     _ANSELH	set	393
+   399     0188                     _ANSEL	set	392
+   400                           
+   401                           	psect	cinit
+   402     000F                     start_initialization:	
+   403                           ; #config settings
+   404                           
+   405     000F                     __initialization:
+   406                           
+   407                           ; Clear objects allocated to COMMON
+   408     000F  01F7               	clrf	__pbssCOMMON& (0+127)
+   409     0010  01F8               	clrf	(__pbssCOMMON+1)& (0+127)
+   410     0011  01F9               	clrf	(__pbssCOMMON+2)& (0+127)
+   411     0012                     end_of_initialization:	
+   412                           ;End of C runtime variable initialization code
+   413                           
+   414     0012                     __end_of__initialization:
+   415     0012  0183               	clrf	3
+   416     0013  120A  118A  2961   	ljmp	_main	;jump to C main() function
+   417                           
+   418                           	psect	bssCOMMON
+   419     0077                     __pbssCOMMON:
+   420     0077                     _adc_val:
+   421     0077                     	ds	1
+   422     0078                     _dato:
+   423     0078                     	ds	1
+   424     0079                     _z:
+   425     0079                     	ds	1
+   426                           
+   427                           	psect	cstackCOMMON
+   428     0070                     __pcstackCOMMON:
+   429     0070                     ?_setup:
+   430     0070                     ?_I2C_Slave_Init:	
+   431                           ; 1 bytes @ 0x0
+   432                           
+   433     0070                     ?_isr:	
+   434                           ; 1 bytes @ 0x0
+   435                           
+   436     0070                     ??_isr:	
+   437                           ; 1 bytes @ 0x0
+   438                           
+   439     0070                     ?_main:	
+   440                           ; 1 bytes @ 0x0
+   441                           
+   442                           
+   443                           ; 1 bytes @ 0x0
+   444     0070                     	ds	3
+   445     0073                     ?_adc_init:
+   446     0073                     ??_I2C_Slave_Init:	
+   447                           ; 1 bytes @ 0x3
+   448                           
+   449     0073                     ?_adc_read:	
+   450                           ; 1 bytes @ 0x3
+   451                           
+   452     0073                     I2C_Slave_Init@address:	
+   453                           ; 2 bytes @ 0x3
+   454                           
+   455     0073                     adc_init@channel:	
+   456                           ; 1 bytes @ 0x3
+   457                           
+   458                           
+   459                           ; 2 bytes @ 0x3
+   460     0073                     	ds	2
+   461     0075                     ??_adc_read:
+   462     0075                     ??_adc_init:	
+   463                           ; 1 bytes @ 0x5
+   464                           
+   465                           
+   466                           ; 1 bytes @ 0x5
+   467     0075                     	ds	1
+   468     0076                     ??_setup:
+   469                           
+   470                           ; 1 bytes @ 0x6
+   471     0076                     	ds	1
+   472                           
+   473                           	psect	cstackBANK0
+   474     0020                     __pcstackBANK0:
+   475     0020                     adc_read@adcValue:
+   476                           
+   477                           ; 2 bytes @ 0x0
+   478     0020                     	ds	2
+   479     0022                     ??_main:
+   480                           
+   481                           ; 1 bytes @ 0x2
+   482     0022                     	ds	2
+   483                           
+   484                           	psect	maintext
+   485     0161                     __pmaintext:	
+   486 ;;
+   487 ;;Main: autosize = 0, tempsize = 2, incstack = 0, save=0
+   488 ;;
+   489 ;; *************** function _main *****************
+   490 ;; Defined at:
+   491 ;;		line 89 in file "C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/PRE4_SLAVE.c"
+   492 ;; Parameters:    Size  Location     Type
+   493 ;;		None
+   494 ;; Auto vars:     Size  Location     Type
+   495 ;;		None
+   496 ;; Return value:  Size  Location     Type
+   497 ;;                  1    wreg      void 
+   498 ;; Registers used:
+   499 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+   500 ;; Tracked objects:
+   501 ;;		On entry : B00/0
+   502 ;;		On exit  : 0/0
+   503 ;;		Unchanged: 0/0
+   504 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   505 ;;      Params:         0       0       0       0       0
+   506 ;;      Locals:         0       0       0       0       0
+   507 ;;      Temps:          0       2       0       0       0
+   508 ;;      Totals:         0       2       0       0       0
+   509 ;;Total ram usage:        2 bytes
+   510 ;; Hardware stack levels required when called: 3
+   511 ;; This function calls:
+   512 ;;		_adc_read
+   513 ;;		_setup
+   514 ;; This function is called by:
+   515 ;;		Startup code after reset
+   516 ;; This function uses a non-reentrant model
+   517 ;;
+   518                           
+   519     0161                     _main:	
+   520                           ;psect for function _main
+   521                           
+   522     0161                     l1080:	
+   523                           ;incstack = 0
+   524                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+   525                           
+   526                           
+   527                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/PRE4_SLAVE.c: 90:     setup()
+      +                          ;
+   528     0161  120A  118A  2146  120A  118A  	fcall	_setup
+   529     0166                     l1082:
+   530                           
+   531                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/PRE4_SLAVE.c: 95:         adc
+      +                          _val = adc_read();
+   532     0166  120A  118A  2195  120A  118A  	fcall	_adc_read
+   533     016B  0873               	movf	?_adc_read,w
+   534     016C  00F7               	movwf	_adc_val
+   535     016D                     l1084:
+   536                           
+   537                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/PRE4_SLAVE.c: 96:        _del
+      +                          ay((unsigned long)((50)*(8000000/4000.0)));
+   538     016D  3082               	movlw	130
+   539     016E  1283               	bcf	3,5	;RP0=0, select bank0
+   540     016F  1303               	bcf	3,6	;RP1=0, select bank0
+   541     0170  00A3               	movwf	??_main+1
+   542     0171  30DD               	movlw	221
+   543     0172  00A2               	movwf	??_main
+   544     0173                     u177:
+   545     0173  0BA2               	decfsz	??_main,f
+   546     0174  2973               	goto	u177
+   547     0175  0BA3               	decfsz	??_main+1,f
+   548     0176  2973               	goto	u177
+   549     0177  2966               	goto	l1082
+   550     0178  120A  118A  280C   	ljmp	start
+   551     017B                     __end_of_main:
+   552                           
+   553                           	psect	text1
+   554     0146                     __ptext1:	
+   555 ;; *************** function _setup *****************
+   556 ;; Defined at:
+   557 ;;		line 103 in file "C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/PRE4_SLAVE.c"
+   558 ;; Parameters:    Size  Location     Type
+   559 ;;		None
+   560 ;; Auto vars:     Size  Location     Type
+   561 ;;		None
+   562 ;; Return value:  Size  Location     Type
+   563 ;;                  1    wreg      void 
+   564 ;; Registers used:
+   565 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+   566 ;; Tracked objects:
+   567 ;;		On entry : 0/0
+   568 ;;		On exit  : 0/0
+   569 ;;		Unchanged: 0/0
+   570 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   571 ;;      Params:         0       0       0       0       0
+   572 ;;      Locals:         0       0       0       0       0
+   573 ;;      Temps:          0       0       0       0       0
+   574 ;;      Totals:         0       0       0       0       0
+   575 ;;Total ram usage:        0 bytes
+   576 ;; Hardware stack levels used: 1
+   577 ;; Hardware stack levels required when called: 2
+   578 ;; This function calls:
+   579 ;;		_I2C_Slave_Init
+   580 ;;		_adc_init
+   581 ;; This function is called by:
+   582 ;;		_main
+   583 ;; This function uses a non-reentrant model
+   584 ;;
+   585                           
+   586     0146                     _setup:	
+   587                           ;psect for function _setup
+   588                           
+   589     0146                     l1036:	
+   590                           ;incstack = 0
+   591                           ; Regs used in _setup: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+   592                           
+   593                           
+   594                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/PRE4_SLAVE.c: 104:     ANSEL 
+      +                          = 0;
+   595     0146  1683               	bsf	3,5	;RP0=1, select bank3
+   596     0147  1703               	bsf	3,6	;RP1=1, select bank3
+   597     0148  0188               	clrf	8	;volatile
+   598                           
+   599                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/PRE4_SLAVE.c: 105:     ANSELH
+      +                           = 0;
+   600     0149  0189               	clrf	9	;volatile
+   601                           
+   602                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/PRE4_SLAVE.c: 107:     TRISB 
+      +                          = 0;
+   603     014A  1683               	bsf	3,5	;RP0=1, select bank1
+   604     014B  1303               	bcf	3,6	;RP1=0, select bank1
+   605     014C  0186               	clrf	6	;volatile
+   606                           
+   607                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/PRE4_SLAVE.c: 108:     TRISD 
+      +                          = 0;
+   608     014D  0188               	clrf	8	;volatile
+   609                           
+   610                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/PRE4_SLAVE.c: 110:     PORTB 
+      +                          = 0;
+   611     014E  1283               	bcf	3,5	;RP0=0, select bank0
+   612     014F  1303               	bcf	3,6	;RP1=0, select bank0
+   613     0150  0186               	clrf	6	;volatile
+   614                           
+   615                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/PRE4_SLAVE.c: 111:     PORTD 
+      +                          = 0;
+   616     0151  0188               	clrf	8	;volatile
+   617     0152                     l1038:
+   618                           
+   619                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/PRE4_SLAVE.c: 112:     adc_in
+      +                          it(0);
+   620     0152  3000               	movlw	0
+   621     0153  00F3               	movwf	adc_init@channel
+   622     0154  00F4               	movwf	adc_init@channel+1
+   623     0155  120A  118A  2016  120A  118A  	fcall	_adc_init
+   624     015A                     l1040:
+   625                           
+   626                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/PRE4_SLAVE.c: 113:     I2C_Sl
+      +                          ave_Init(0x50);
+   627     015A  3050               	movlw	80
+   628     015B  120A  118A  217B  120A  118A  	fcall	_I2C_Slave_Init
+   629     0160                     l67:
+   630     0160  0008               	return
+   631     0161                     __end_of_setup:
+   632                           
+   633                           	psect	text2
+   634     0016                     __ptext2:	
+   635 ;; *************** function _adc_init *****************
+   636 ;; Defined at:
+   637 ;;		line 10 in file "C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c"
+   638 ;; Parameters:    Size  Location     Type
+   639 ;;  channel         2    3[COMMON] int 
+   640 ;; Auto vars:     Size  Location     Type
+   641 ;;		None
+   642 ;; Return value:  Size  Location     Type
+   643 ;;                  1    wreg      void 
+   644 ;; Registers used:
+   645 ;;		wreg, fsr0l, fsr0h, status,2, status,0
+   646 ;; Tracked objects:
+   647 ;;		On entry : 0/0
+   648 ;;		On exit  : 0/0
+   649 ;;		Unchanged: 0/0
+   650 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   651 ;;      Params:         2       0       0       0       0
+   652 ;;      Locals:         0       0       0       0       0
+   653 ;;      Temps:          1       0       0       0       0
+   654 ;;      Totals:         3       0       0       0       0
+   655 ;;Total ram usage:        3 bytes
+   656 ;; Hardware stack levels used: 1
+   657 ;; Hardware stack levels required when called: 1
+   658 ;; This function calls:
+   659 ;;		Nothing
+   660 ;; This function is called by:
+   661 ;;		_setup
+   662 ;; This function uses a non-reentrant model
+   663 ;;
+   664                           
+   665     0016                     _adc_init:	
+   666                           ;psect for function _adc_init
+   667                           
+   668     0016                     l1014:	
+   669                           ;incstack = 0
+   670                           ; Regs used in _adc_init: [wreg-fsr0h+status,2+status,0]
+   671                           
+   672                           
+   673                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 11:     switch (channe
+      +                          l){
+   674     0016  28A3               	goto	l1018
+   675     0017                     l152:	
+   676                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 12:         case 0:
+   677                           
+   678                           
+   679                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 13:             PORTAb
+      +                          its.RA0=0;
+   680     0017  1283               	bcf	3,5	;RP0=0, select bank0
+   681     0018  1303               	bcf	3,6	;RP1=0, select bank0
+   682     0019  1005               	bcf	5,0	;volatile
+   683                           
+   684                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 14:             TRISAb
+      +                          its.TRISA0=1;
+   685     001A  1683               	bsf	3,5	;RP0=1, select bank1
+   686     001B  1303               	bcf	3,6	;RP1=0, select bank1
+   687     001C  1405               	bsf	5,0	;volatile
+   688                           
+   689                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 15:             ANSELb
+      +                          its.ANS0=1;
+   690     001D  1683               	bsf	3,5	;RP0=1, select bank3
+   691     001E  1703               	bsf	3,6	;RP1=1, select bank3
+   692     001F  1408               	bsf	8,0	;volatile
+   693                           
+   694                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 16:             break;
+   695     0020  28D4               	goto	l153
+   696     0021                     l154:	
+   697                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 17:         case 1:
+   698                           
+   699                           
+   700                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 18:             PORTAb
+      +                          its.RA1=0;
+   701     0021  1283               	bcf	3,5	;RP0=0, select bank0
+   702     0022  1303               	bcf	3,6	;RP1=0, select bank0
+   703     0023  1085               	bcf	5,1	;volatile
+   704                           
+   705                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 19:             TRISAb
+      +                          its.TRISA1=1;
+   706     0024  1683               	bsf	3,5	;RP0=1, select bank1
+   707     0025  1303               	bcf	3,6	;RP1=0, select bank1
+   708     0026  1485               	bsf	5,1	;volatile
+   709                           
+   710                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 20:             ANSELb
+      +                          its.ANS1=1;
+   711     0027  1683               	bsf	3,5	;RP0=1, select bank3
+   712     0028  1703               	bsf	3,6	;RP1=1, select bank3
+   713     0029  1488               	bsf	8,1	;volatile
+   714                           
+   715                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 21:             break;
+   716     002A  28D4               	goto	l153
+   717     002B                     l155:	
+   718                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 22:         case 2:
+   719                           
+   720                           
+   721                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 23:             PORTAb
+      +                          its.RA2=0;
+   722     002B  1283               	bcf	3,5	;RP0=0, select bank0
+   723     002C  1303               	bcf	3,6	;RP1=0, select bank0
+   724     002D  1105               	bcf	5,2	;volatile
+   725                           
+   726                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 24:             TRISAb
+      +                          its.TRISA2=1;
+   727     002E  1683               	bsf	3,5	;RP0=1, select bank1
+   728     002F  1303               	bcf	3,6	;RP1=0, select bank1
+   729     0030  1505               	bsf	5,2	;volatile
+   730                           
+   731                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 25:             ANSELb
+      +                          its.ANS2=1;
+   732     0031  1683               	bsf	3,5	;RP0=1, select bank3
+   733     0032  1703               	bsf	3,6	;RP1=1, select bank3
+   734     0033  1508               	bsf	8,2	;volatile
+   735                           
+   736                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 26:             break;
+   737     0034  28D4               	goto	l153
+   738     0035                     l156:	
+   739                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 27:         case 3:
+   740                           
+   741                           
+   742                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 28:             PORTAb
+      +                          its.RA3=0;
+   743     0035  1283               	bcf	3,5	;RP0=0, select bank0
+   744     0036  1303               	bcf	3,6	;RP1=0, select bank0
+   745     0037  1185               	bcf	5,3	;volatile
+   746                           
+   747                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 29:             TRISAb
+      +                          its.TRISA3=1;
+   748     0038  1683               	bsf	3,5	;RP0=1, select bank1
+   749     0039  1303               	bcf	3,6	;RP1=0, select bank1
+   750     003A  1585               	bsf	5,3	;volatile
+   751                           
+   752                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 30:             ANSELb
+      +                          its.ANS3=1;
+   753     003B  1683               	bsf	3,5	;RP0=1, select bank3
+   754     003C  1703               	bsf	3,6	;RP1=1, select bank3
+   755     003D  1588               	bsf	8,3	;volatile
+   756                           
+   757                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 31:             break;
+   758     003E  28D4               	goto	l153
+   759     003F                     l157:	
+   760                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 32:         case 4:
+   761                           
+   762                           
+   763                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 33:             PORTAb
+      +                          its.RA5=0;
+   764     003F  1283               	bcf	3,5	;RP0=0, select bank0
+   765     0040  1303               	bcf	3,6	;RP1=0, select bank0
+   766     0041  1285               	bcf	5,5	;volatile
+   767                           
+   768                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 34:             TRISAb
+      +                          its.TRISA5=1;
+   769     0042  1683               	bsf	3,5	;RP0=1, select bank1
+   770     0043  1303               	bcf	3,6	;RP1=0, select bank1
+   771     0044  1685               	bsf	5,5	;volatile
+   772                           
+   773                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 35:             ANSELb
+      +                          its.ANS4=1;
+   774     0045  1683               	bsf	3,5	;RP0=1, select bank3
+   775     0046  1703               	bsf	3,6	;RP1=1, select bank3
+   776     0047  1608               	bsf	8,4	;volatile
+   777                           
+   778                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 36:             break;
+   779     0048  28D4               	goto	l153
+   780     0049                     l158:	
+   781                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 37:         case 5:
+   782                           
+   783                           
+   784                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 38:             PORTEb
+      +                          its.RE0=0;
+   785     0049  1283               	bcf	3,5	;RP0=0, select bank0
+   786     004A  1303               	bcf	3,6	;RP1=0, select bank0
+   787     004B  1009               	bcf	9,0	;volatile
+   788                           
+   789                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 39:             TRISEb
+      +                          its.TRISE0=1;
+   790     004C  1683               	bsf	3,5	;RP0=1, select bank1
+   791     004D  1303               	bcf	3,6	;RP1=0, select bank1
+   792     004E  1409               	bsf	9,0	;volatile
+   793                           
+   794                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 40:             ANSELb
+      +                          its.ANS5=1;
+   795     004F  1683               	bsf	3,5	;RP0=1, select bank3
+   796     0050  1703               	bsf	3,6	;RP1=1, select bank3
+   797     0051  1688               	bsf	8,5	;volatile
+   798                           
+   799                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 41:             break;
+   800     0052  28D4               	goto	l153
+   801     0053                     l159:	
+   802                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 42:         case 6:
+   803                           
+   804                           
+   805                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 43:             PORTEb
+      +                          its.RE1=0;
+   806     0053  1283               	bcf	3,5	;RP0=0, select bank0
+   807     0054  1303               	bcf	3,6	;RP1=0, select bank0
+   808     0055  1089               	bcf	9,1	;volatile
+   809                           
+   810                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 44:             TRISEb
+      +                          its.TRISE1=1;
+   811     0056  1683               	bsf	3,5	;RP0=1, select bank1
+   812     0057  1303               	bcf	3,6	;RP1=0, select bank1
+   813     0058  1489               	bsf	9,1	;volatile
+   814                           
+   815                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 45:             ANSELb
+      +                          its.ANS6=1;
+   816     0059  1683               	bsf	3,5	;RP0=1, select bank3
+   817     005A  1703               	bsf	3,6	;RP1=1, select bank3
+   818     005B  1708               	bsf	8,6	;volatile
+   819                           
+   820                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 46:             break;
+   821     005C  28D4               	goto	l153
+   822     005D                     l160:	
+   823                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 47:         case 7:
+   824                           
+   825                           
+   826                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 48:             PORTEb
+      +                          its.RE2=0;
+   827     005D  1283               	bcf	3,5	;RP0=0, select bank0
+   828     005E  1303               	bcf	3,6	;RP1=0, select bank0
+   829     005F  1109               	bcf	9,2	;volatile
+   830                           
+   831                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 49:             TRISEb
+      +                          its.TRISE2=1;
+   832     0060  1683               	bsf	3,5	;RP0=1, select bank1
+   833     0061  1303               	bcf	3,6	;RP1=0, select bank1
+   834     0062  1509               	bsf	9,2	;volatile
+   835                           
+   836                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 50:             ANSELb
+      +                          its.ANS7=1;
+   837     0063  1683               	bsf	3,5	;RP0=1, select bank3
+   838     0064  1703               	bsf	3,6	;RP1=1, select bank3
+   839     0065  1788               	bsf	8,7	;volatile
+   840                           
+   841                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 51:             break;
+   842     0066  28D4               	goto	l153
+   843     0067                     l161:	
+   844                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 52:         case 8:
+   845                           
+   846                           
+   847                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 53:             PORTBb
+      +                          its.RB2=0;
+   848     0067  1283               	bcf	3,5	;RP0=0, select bank0
+   849     0068  1303               	bcf	3,6	;RP1=0, select bank0
+   850     0069  1106               	bcf	6,2	;volatile
+   851                           
+   852                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 54:             TRISBb
+      +                          its.TRISB2=1;
+   853     006A  1683               	bsf	3,5	;RP0=1, select bank1
+   854     006B  1303               	bcf	3,6	;RP1=0, select bank1
+   855     006C  1506               	bsf	6,2	;volatile
+   856                           
+   857                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 55:             ANSELH
+      +                          bits.ANS8=1;
+   858     006D  1683               	bsf	3,5	;RP0=1, select bank3
+   859     006E  1703               	bsf	3,6	;RP1=1, select bank3
+   860     006F  1409               	bsf	9,0	;volatile
+   861                           
+   862                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 56:             break;
+   863     0070  28D4               	goto	l153
+   864     0071                     l162:	
+   865                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 57:         case 9:
+   866                           
+   867                           
+   868                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 58:             PORTBb
+      +                          its.RB3=0;
+   869     0071  1283               	bcf	3,5	;RP0=0, select bank0
+   870     0072  1303               	bcf	3,6	;RP1=0, select bank0
+   871     0073  1186               	bcf	6,3	;volatile
+   872                           
+   873                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 59:             TRISBb
+      +                          its.TRISB3=1;
+   874     0074  1683               	bsf	3,5	;RP0=1, select bank1
+   875     0075  1303               	bcf	3,6	;RP1=0, select bank1
+   876     0076  1586               	bsf	6,3	;volatile
+   877                           
+   878                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 60:             ANSELH
+      +                          bits.ANS9=1;
+   879     0077  1683               	bsf	3,5	;RP0=1, select bank3
+   880     0078  1703               	bsf	3,6	;RP1=1, select bank3
+   881     0079  1489               	bsf	9,1	;volatile
+   882                           
+   883                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 61:             break;
+   884     007A  28D4               	goto	l153
+   885     007B                     l163:	
+   886                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 62:         case 10:
+   887                           
+   888                           
+   889                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 63:             PORTBb
+      +                          its.RB1=0;
+   890     007B  1283               	bcf	3,5	;RP0=0, select bank0
+   891     007C  1303               	bcf	3,6	;RP1=0, select bank0
+   892     007D  1086               	bcf	6,1	;volatile
+   893                           
+   894                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 64:             TRISBb
+      +                          its.TRISB1=1;
+   895     007E  1683               	bsf	3,5	;RP0=1, select bank1
+   896     007F  1303               	bcf	3,6	;RP1=0, select bank1
+   897     0080  1486               	bsf	6,1	;volatile
+   898                           
+   899                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 65:             ANSELH
+      +                          bits.ANS10=1;
+   900     0081  1683               	bsf	3,5	;RP0=1, select bank3
+   901     0082  1703               	bsf	3,6	;RP1=1, select bank3
+   902     0083  1509               	bsf	9,2	;volatile
+   903                           
+   904                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 66:             break;
+   905     0084  28D4               	goto	l153
+   906     0085                     l164:	
+   907                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 67:         case 11:
+   908                           
+   909                           
+   910                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 68:             PORTBb
+      +                          its.RB4=0;
+   911     0085  1283               	bcf	3,5	;RP0=0, select bank0
+   912     0086  1303               	bcf	3,6	;RP1=0, select bank0
+   913     0087  1206               	bcf	6,4	;volatile
+   914                           
+   915                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 69:             TRISBb
+      +                          its.TRISB4=1;
+   916     0088  1683               	bsf	3,5	;RP0=1, select bank1
+   917     0089  1303               	bcf	3,6	;RP1=0, select bank1
+   918     008A  1606               	bsf	6,4	;volatile
+   919                           
+   920                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 70:             ANSELH
+      +                          bits.ANS11=1;
+   921     008B  1683               	bsf	3,5	;RP0=1, select bank3
+   922     008C  1703               	bsf	3,6	;RP1=1, select bank3
+   923     008D  1589               	bsf	9,3	;volatile
+   924                           
+   925                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 71:             break;
+   926     008E  28D4               	goto	l153
+   927     008F                     l165:	
+   928                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 72:         case 12:
+   929                           
+   930                           
+   931                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 73:             PORTBb
+      +                          its.RB0=0;
+   932     008F  1283               	bcf	3,5	;RP0=0, select bank0
+   933     0090  1303               	bcf	3,6	;RP1=0, select bank0
+   934     0091  1006               	bcf	6,0	;volatile
+   935                           
+   936                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 74:             TRISBb
+      +                          its.TRISB0=1;
+   937     0092  1683               	bsf	3,5	;RP0=1, select bank1
+   938     0093  1303               	bcf	3,6	;RP1=0, select bank1
+   939     0094  1406               	bsf	6,0	;volatile
+   940                           
+   941                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 75:             ANSELH
+      +                          bits.ANS12=1;
+   942     0095  1683               	bsf	3,5	;RP0=1, select bank3
+   943     0096  1703               	bsf	3,6	;RP1=1, select bank3
+   944     0097  1609               	bsf	9,4	;volatile
+   945                           
+   946                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 76:             break;
+   947     0098  28D4               	goto	l153
+   948     0099                     l166:	
+   949                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 77:         case 13:
+   950                           
+   951                           
+   952                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 78:             PORTBb
+      +                          its.RB5=0;
+   953     0099  1283               	bcf	3,5	;RP0=0, select bank0
+   954     009A  1303               	bcf	3,6	;RP1=0, select bank0
+   955     009B  1286               	bcf	6,5	;volatile
+   956                           
+   957                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 79:             TRISBb
+      +                          its.TRISB5=1;
+   958     009C  1683               	bsf	3,5	;RP0=1, select bank1
+   959     009D  1303               	bcf	3,6	;RP1=0, select bank1
+   960     009E  1686               	bsf	6,5	;volatile
+   961                           
+   962                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 80:             ANSELH
+      +                          bits.ANS13=1;
+   963     009F  1683               	bsf	3,5	;RP0=1, select bank3
+   964     00A0  1703               	bsf	3,6	;RP1=1, select bank3
+   965     00A1  1689               	bsf	9,5	;volatile
+   966                           
+   967                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 81:             break;
+   968     00A2  28D4               	goto	l153
+   969     00A3                     l1018:
+   970                           
+   971                           ; Switch on 2 bytes has been partitioned into a top level switch of size 1, and 1 sub-sw
+      +                          itches
+   972                           ; Switch size 1, requested type "simple"
+   973                           ; Number of cases is 1, Range of values is 0 to 0
+   974                           ; switch strategies available:
+   975                           ; Name         Instructions Cycles
+   976                           ; simple_byte            4     3 (average)
+   977                           ; direct_byte           11     8 (fixed)
+   978                           ; jumptable            260     6 (fixed)
+   979                           ;	Chosen strategy is simple_byte
+   980     00A3  0874               	movf	adc_init@channel+1,w
+   981     00A4  3A00               	xorlw	0	; case 0
+   982     00A5  1903               	skipnz
+   983     00A6  28A8               	goto	l1106
+   984     00A7  28D4               	goto	l153
+   985     00A8                     l1106:
+   986                           
+   987                           ; Switch size 1, requested type "simple"
+   988                           ; Number of cases is 14, Range of values is 0 to 13
+   989                           ; switch strategies available:
+   990                           ; Name         Instructions Cycles
+   991                           ; simple_byte           43    22 (average)
+   992                           ; direct_byte           50     8 (fixed)
+   993                           ; jumptable            260     6 (fixed)
+   994                           ;	Chosen strategy is simple_byte
+   995     00A8  0873               	movf	adc_init@channel,w
+   996     00A9  3A00               	xorlw	0	; case 0
+   997     00AA  1903               	skipnz
+   998     00AB  2817               	goto	l152
+   999     00AC  3A01               	xorlw	1	; case 1
+  1000     00AD  1903               	skipnz
+  1001     00AE  2821               	goto	l154
+  1002     00AF  3A03               	xorlw	3	; case 2
+  1003     00B0  1903               	skipnz
+  1004     00B1  282B               	goto	l155
+  1005     00B2  3A01               	xorlw	1	; case 3
+  1006     00B3  1903               	skipnz
+  1007     00B4  2835               	goto	l156
+  1008     00B5  3A07               	xorlw	7	; case 4
+  1009     00B6  1903               	skipnz
+  1010     00B7  283F               	goto	l157
+  1011     00B8  3A01               	xorlw	1	; case 5
+  1012     00B9  1903               	skipnz
+  1013     00BA  2849               	goto	l158
+  1014     00BB  3A03               	xorlw	3	; case 6
+  1015     00BC  1903               	skipnz
+  1016     00BD  2853               	goto	l159
+  1017     00BE  3A01               	xorlw	1	; case 7
+  1018     00BF  1903               	skipnz
+  1019     00C0  285D               	goto	l160
+  1020     00C1  3A0F               	xorlw	15	; case 8
+  1021     00C2  1903               	skipnz
+  1022     00C3  2867               	goto	l161
+  1023     00C4  3A01               	xorlw	1	; case 9
+  1024     00C5  1903               	skipnz
+  1025     00C6  2871               	goto	l162
+  1026     00C7  3A03               	xorlw	3	; case 10
+  1027     00C8  1903               	skipnz
+  1028     00C9  287B               	goto	l163
+  1029     00CA  3A01               	xorlw	1	; case 11
+  1030     00CB  1903               	skipnz
+  1031     00CC  2885               	goto	l164
+  1032     00CD  3A07               	xorlw	7	; case 12
+  1033     00CE  1903               	skipnz
+  1034     00CF  288F               	goto	l165
+  1035     00D0  3A01               	xorlw	1	; case 13
+  1036     00D1  1903               	skipnz
+  1037     00D2  2899               	goto	l166
+  1038     00D3  28D4               	goto	l153
+  1039     00D4                     l153:
+  1040                           
+  1041                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 84:     ADCON0bits.ADC
+      +                          S1=0;
+  1042     00D4  1283               	bcf	3,5	;RP0=0, select bank0
+  1043     00D5  1303               	bcf	3,6	;RP1=0, select bank0
+  1044     00D6  139F               	bcf	31,7	;volatile
+  1045                           
+  1046                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 85:     ADCON0bits.ADC
+      +                          S0=1;
+  1047     00D7  171F               	bsf	31,6	;volatile
+  1048     00D8                     l1020:
+  1049                           
+  1050                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 86:     ADCON0bits.ADC
+      +                          S =01;
+  1051     00D8  081F               	movf	31,w	;volatile
+  1052     00D9  393F               	andlw	-193
+  1053     00DA  3840               	iorlw	64
+  1054     00DB  009F               	movwf	31	;volatile
+  1055     00DC                     l1022:
+  1056                           
+  1057                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 87:     ADCON1bits.VCF
+      +                          G1=0;
+  1058     00DC  1683               	bsf	3,5	;RP0=1, select bank1
+  1059     00DD  1303               	bcf	3,6	;RP1=0, select bank1
+  1060     00DE  129F               	bcf	31,5	;volatile
+  1061     00DF                     l1024:
+  1062                           
+  1063                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 88:     ADCON1bits.VCF
+      +                          G0=0;
+  1064     00DF  121F               	bcf	31,4	;volatile
+  1065     00E0                     l1026:
+  1066                           
+  1067                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 90:     ADCON1bits.ADF
+      +                          M=0;
+  1068     00E0  139F               	bcf	31,7	;volatile
+  1069     00E1                     l1028:
+  1070                           
+  1071                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 91:     ADCON0bits.ADO
+      +                          N=1;
+  1072     00E1  1283               	bcf	3,5	;RP0=0, select bank0
+  1073     00E2  1303               	bcf	3,6	;RP1=0, select bank0
+  1074     00E3  141F               	bsf	31,0	;volatile
+  1075     00E4                     l1030:
+  1076                           
+  1077                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 93:     _delay((unsign
+      +                          ed long)((100)*(4000000/4000000.0)));
+  1078     00E4  3021               	movlw	33
+  1079     00E5  00F5               	movwf	??_adc_init
+  1080     00E6                     u187:
+  1081     00E6  0BF5               	decfsz	??_adc_init,f
+  1082     00E7  28E6               	goto	u187
+  1083     00E8                     l167:
+  1084     00E8  0008               	return
+  1085     00E9                     __end_of_adc_init:
+  1086                           
+  1087                           	psect	text3
+  1088     017B                     __ptext3:	
+  1089 ;; *************** function _I2C_Slave_Init *****************
+  1090 ;; Defined at:
+  1091 ;;		line 93 in file "C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/I2C.c"
+  1092 ;; Parameters:    Size  Location     Type
+  1093 ;;  address         1    wreg     unsigned char 
+  1094 ;; Auto vars:     Size  Location     Type
+  1095 ;;  address         1    3[COMMON] unsigned char 
+  1096 ;; Return value:  Size  Location     Type
+  1097 ;;                  1    wreg      void 
+  1098 ;; Registers used:
+  1099 ;;		wreg
+  1100 ;; Tracked objects:
+  1101 ;;		On entry : 0/0
+  1102 ;;		On exit  : 0/0
+  1103 ;;		Unchanged: 0/0
+  1104 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1105 ;;      Params:         0       0       0       0       0
+  1106 ;;      Locals:         1       0       0       0       0
+  1107 ;;      Temps:          0       0       0       0       0
+  1108 ;;      Totals:         1       0       0       0       0
+  1109 ;;Total ram usage:        1 bytes
+  1110 ;; Hardware stack levels used: 1
+  1111 ;; Hardware stack levels required when called: 1
+  1112 ;; This function calls:
+  1113 ;;		Nothing
+  1114 ;; This function is called by:
+  1115 ;;		_setup
+  1116 ;; This function uses a non-reentrant model
+  1117 ;;
+  1118                           
+  1119     017B                     _I2C_Slave_Init:	
+  1120                           ;psect for function _I2C_Slave_Init
+  1121                           
+  1122                           
+  1123                           ;incstack = 0
+  1124                           ; Regs used in _I2C_Slave_Init: [wreg]
+  1125                           ;I2C_Slave_Init@address stored from wreg
+  1126     017B  00F3               	movwf	I2C_Slave_Init@address
+  1127     017C                     l810:
+  1128                           
+  1129                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/I2C.c: 93: void I2C_Slave_Ini
+      +                          t(uint8_t address);C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/I2C.c: 94: 
+      +                          {;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/I2C.c: 95:     SSPADD = addr
+      +                          ess;
+  1130     017C  0873               	movf	I2C_Slave_Init@address,w
+  1131     017D  1683               	bsf	3,5	;RP0=1, select bank1
+  1132     017E  1303               	bcf	3,6	;RP1=0, select bank1
+  1133     017F  0093               	movwf	19	;volatile
+  1134                           
+  1135                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/I2C.c: 96:     SSPCON = 0x36;
+  1136     0180  3036               	movlw	54
+  1137     0181  1283               	bcf	3,5	;RP0=0, select bank0
+  1138     0182  1303               	bcf	3,6	;RP1=0, select bank0
+  1139     0183  0094               	movwf	20	;volatile
+  1140                           
+  1141                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/I2C.c: 97:     SSPSTAT = 0x80
+      +                          ;
+  1142     0184  3080               	movlw	128
+  1143     0185  1683               	bsf	3,5	;RP0=1, select bank1
+  1144     0186  1303               	bcf	3,6	;RP1=0, select bank1
+  1145     0187  0094               	movwf	20	;volatile
+  1146                           
+  1147                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/I2C.c: 98:     SSPCON2 = 0x01
+      +                          ;
+  1148     0188  3001               	movlw	1
+  1149     0189  0091               	movwf	17	;volatile
+  1150     018A                     l812:
+  1151                           
+  1152                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/I2C.c: 99:     TRISC3 = 1;
+  1153     018A  1587               	bsf	7,3	;volatile
+  1154     018B                     l814:
+  1155                           
+  1156                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/I2C.c: 100:     TRISC4 = 1;
+  1157     018B  1607               	bsf	7,4	;volatile
+  1158     018C                     l816:
+  1159                           
+  1160                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/I2C.c: 101:     GIE = 1;
+  1161     018C  178B               	bsf	11,7	;volatile
+  1162     018D                     l818:
+  1163                           
+  1164                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/I2C.c: 102:     PEIE = 1;
+  1165     018D  170B               	bsf	11,6	;volatile
+  1166     018E                     l820:
+  1167                           
+  1168                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/I2C.c: 103:     SSPIF = 0;
+  1169     018E  1283               	bcf	3,5	;RP0=0, select bank0
+  1170     018F  1303               	bcf	3,6	;RP1=0, select bank0
+  1171     0190  118C               	bcf	12,3	;volatile
+  1172     0191                     l822:
+  1173                           
+  1174                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/I2C.c: 104:     SSPIE = 1;
+  1175     0191  1683               	bsf	3,5	;RP0=1, select bank1
+  1176     0192  1303               	bcf	3,6	;RP1=0, select bank1
+  1177     0193  158C               	bsf	12,3	;volatile
+  1178     0194                     l122:
+  1179     0194  0008               	return
+  1180     0195                     __end_of_I2C_Slave_Init:
+  1181                           
+  1182                           	psect	text4
+  1183     0195                     __ptext4:	
+  1184 ;; *************** function _adc_read *****************
+  1185 ;; Defined at:
+  1186 ;;		line 96 in file "C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c"
+  1187 ;; Parameters:    Size  Location     Type
+  1188 ;;		None
+  1189 ;; Auto vars:     Size  Location     Type
+  1190 ;;  adcValue        2    0[BANK0 ] int 
+  1191 ;; Return value:  Size  Location     Type
+  1192 ;;                  2    3[COMMON] int 
+  1193 ;; Registers used:
+  1194 ;;		wreg
+  1195 ;; Tracked objects:
+  1196 ;;		On entry : 0/0
+  1197 ;;		On exit  : 0/0
+  1198 ;;		Unchanged: 0/0
+  1199 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1200 ;;      Params:         2       0       0       0       0
+  1201 ;;      Locals:         0       2       0       0       0
+  1202 ;;      Temps:          2       0       0       0       0
+  1203 ;;      Totals:         4       2       0       0       0
+  1204 ;;Total ram usage:        6 bytes
+  1205 ;; Hardware stack levels used: 1
+  1206 ;; Hardware stack levels required when called: 1
+  1207 ;; This function calls:
+  1208 ;;		Nothing
+  1209 ;; This function is called by:
+  1210 ;;		_main
+  1211 ;; This function uses a non-reentrant model
+  1212 ;;
+  1213                           
+  1214     0195                     _adc_read:	
+  1215                           ;psect for function _adc_read
+  1216                           
+  1217     0195                     l1074:	
+  1218                           ;incstack = 0
+  1219                           ; Regs used in _adc_read: [wreg]
+  1220                           
+  1221                           
+  1222                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 97:     int adcValue;;
+      +                          C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 98:     ADCON0bits.GO =
+      +                           1;
+  1223     0195  1283               	bcf	3,5	;RP0=0, select bank0
+  1224     0196  1303               	bcf	3,6	;RP1=0, select bank0
+  1225     0197  149F               	bsf	31,1	;volatile
+  1226     0198                     l170:	
+  1227                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 99:     while(ADCON0bi
+      +                          ts.GO == 1);
+  1228                           
+  1229     0198  189F               	btfsc	31,1	;volatile
+  1230     0199  299B               	goto	u161
+  1231     019A  299C               	goto	u160
+  1232     019B                     u161:
+  1233     019B  2998               	goto	l170
+  1234     019C                     u160:
+  1235     019C                     l172:
+  1236                           
+  1237                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 100:     ADIF = 0;
+  1238     019C  130C               	bcf	12,6	;volatile
+  1239     019D                     l1076:
+  1240                           
+  1241                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 101:     adcValue = AD
+      +                          RESH;
+  1242     019D  081E               	movf	30,w	;volatile
+  1243     019E  00F5               	movwf	??_adc_read
+  1244     019F  01F6               	clrf	??_adc_read+1
+  1245     01A0  0875               	movf	??_adc_read,w
+  1246     01A1  00A0               	movwf	adc_read@adcValue
+  1247     01A2  0876               	movf	??_adc_read+1,w
+  1248     01A3  00A1               	movwf	adc_read@adcValue+1
+  1249                           
+  1250                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/ADC.c: 102:     return adcVal
+      +                          ue;
+  1251     01A4  0821               	movf	adc_read@adcValue+1,w
+  1252     01A5  00F4               	movwf	?_adc_read+1
+  1253     01A6  0820               	movf	adc_read@adcValue,w
+  1254     01A7  00F3               	movwf	?_adc_read
+  1255     01A8                     l173:
+  1256     01A8  0008               	return
+  1257     01A9                     __end_of_adc_read:
+  1258                           
+  1259                           	psect	text5
+  1260     00E9                     __ptext5:	
+  1261 ;; *************** function _isr *****************
+  1262 ;; Defined at:
+  1263 ;;		line 52 in file "C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/PRE4_SLAVE.c"
+  1264 ;; Parameters:    Size  Location     Type
+  1265 ;;		None
+  1266 ;; Auto vars:     Size  Location     Type
+  1267 ;;		None
+  1268 ;; Return value:  Size  Location     Type
+  1269 ;;                  1    wreg      void 
+  1270 ;; Registers used:
+  1271 ;;		wreg
+  1272 ;; Tracked objects:
+  1273 ;;		On entry : 0/0
+  1274 ;;		On exit  : 0/0
+  1275 ;;		Unchanged: 0/0
+  1276 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1277 ;;      Params:         0       0       0       0       0
+  1278 ;;      Locals:         0       0       0       0       0
+  1279 ;;      Temps:          3       0       0       0       0
+  1280 ;;      Totals:         3       0       0       0       0
+  1281 ;;Total ram usage:        3 bytes
+  1282 ;; Hardware stack levels used: 1
+  1283 ;; This function calls:
+  1284 ;;		Nothing
+  1285 ;; This function is called by:
+  1286 ;;		Interrupt level 1
+  1287 ;; This function uses a non-reentrant model
+  1288 ;;
+  1289                           
+  1290     00E9                     _isr:	
+  1291                           ;psect for function _isr
+  1292                           
+  1293     00E9                     i1l840:
+  1294                           
+  1295                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/PRE4_SLAVE.c: 53:    if(PIR1b
+      +                          its.SSPIF == 1){
+  1296     00E9  1283               	bcf	3,5	;RP0=0, select bank0
+  1297     00EA  1303               	bcf	3,6	;RP1=0, select bank0
+  1298     00EB  1D8C               	btfss	12,3	;volatile
+  1299     00EC  28EE               	goto	u4_21
+  1300     00ED  28EF               	goto	u4_20
+  1301     00EE                     u4_21:
+  1302     00EE  293F               	goto	i1l56
+  1303     00EF                     u4_20:
+  1304     00EF                     i1l842:
+  1305                           
+  1306                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/PRE4_SLAVE.c: 55:         SSP
+      +                          CONbits.CKP = 0;
+  1307     00EF  1214               	bcf	20,4	;volatile
+  1308                           
+  1309                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/PRE4_SLAVE.c: 57:         if 
+      +                          ((SSPCONbits.SSPOV) || (SSPCONbits.WCOL)){
+  1310     00F0  1B14               	btfsc	20,6	;volatile
+  1311     00F1  28F3               	goto	u5_21
+  1312     00F2  28F4               	goto	u5_20
+  1313     00F3                     u5_21:
+  1314     00F3  28F8               	goto	i1l846
+  1315     00F4                     u5_20:
+  1316     00F4                     i1l844:
+  1317     00F4  1F94               	btfss	20,7	;volatile
+  1318     00F5  28F7               	goto	u6_21
+  1319     00F6  28F8               	goto	u6_20
+  1320     00F7                     u6_21:
+  1321     00F7  28FD               	goto	i1l854
+  1322     00F8                     u6_20:
+  1323     00F8                     i1l846:
+  1324                           
+  1325                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/PRE4_SLAVE.c: 58:            
+      +                           z = SSPBUF;
+  1326     00F8  0813               	movf	19,w	;volatile
+  1327     00F9  00F9               	movwf	_z
+  1328     00FA                     i1l848:
+  1329                           
+  1330                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/PRE4_SLAVE.c: 59:            
+      +                           SSPCONbits.SSPOV = 0;
+  1331     00FA  1314               	bcf	20,6	;volatile
+  1332     00FB                     i1l850:
+  1333                           
+  1334                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/PRE4_SLAVE.c: 60:            
+      +                           SSPCONbits.WCOL = 0;
+  1335     00FB  1394               	bcf	20,7	;volatile
+  1336     00FC                     i1l852:
+  1337                           
+  1338                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/PRE4_SLAVE.c: 61:            
+      +                           SSPCONbits.CKP = 1;
+  1339     00FC  1614               	bsf	20,4	;volatile
+  1340     00FD                     i1l854:
+  1341                           
+  1342                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/PRE4_SLAVE.c: 64:         if(
+      +                          !SSPSTATbits.D_nA && !SSPSTATbits.R_nW) {
+  1343     00FD  1683               	bsf	3,5	;RP0=1, select bank1
+  1344     00FE  1303               	bcf	3,6	;RP1=0, select bank1
+  1345     00FF  1A94               	btfsc	20,5	;volatile
+  1346     0100  2902               	goto	u7_21
+  1347     0101  2903               	goto	u7_20
+  1348     0102                     u7_21:
+  1349     0102  291D               	goto	i1l47
+  1350     0103                     u7_20:
+  1351     0103                     i1l856:
+  1352     0103  1914               	btfsc	20,2	;volatile
+  1353     0104  2906               	goto	u8_21
+  1354     0105  2907               	goto	u8_20
+  1355     0106                     u8_21:
+  1356     0106  291D               	goto	i1l47
+  1357     0107                     u8_20:
+  1358     0107                     i1l858:
+  1359                           
+  1360                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/PRE4_SLAVE.c: 66:            
+      +                           z = SSPBUF;
+  1361     0107  1283               	bcf	3,5	;RP0=0, select bank0
+  1362     0108  1303               	bcf	3,6	;RP1=0, select bank0
+  1363     0109  0813               	movf	19,w	;volatile
+  1364     010A  00F9               	movwf	_z
+  1365     010B                     i1l860:
+  1366                           
+  1367                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/PRE4_SLAVE.c: 68:            
+      +                           PIR1bits.SSPIF = 0;
+  1368     010B  118C               	bcf	12,3	;volatile
+  1369     010C                     i1l862:
+  1370                           
+  1371                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/PRE4_SLAVE.c: 69:            
+      +                           SSPCONbits.CKP = 1;
+  1372     010C  1614               	bsf	20,4	;volatile
+  1373     010D                     i1l48:	
+  1374                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/PRE4_SLAVE.c: 70:            
+      +                           while(!SSPSTATbits.BF);
+  1375                           
+  1376     010D  1683               	bsf	3,5	;RP0=1, select bank1
+  1377     010E  1303               	bcf	3,6	;RP1=0, select bank1
+  1378     010F  1C14               	btfss	20,0	;volatile
+  1379     0110  2912               	goto	u9_21
+  1380     0111  2913               	goto	u9_20
+  1381     0112                     u9_21:
+  1382     0112  290D               	goto	i1l48
+  1383     0113                     u9_20:
+  1384     0113                     i1l864:
+  1385                           
+  1386                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/PRE4_SLAVE.c: 71:            
+      +                           PORTD = SSPBUF;
+  1387     0113  1283               	bcf	3,5	;RP0=0, select bank0
+  1388     0114  1303               	bcf	3,6	;RP1=0, select bank0
+  1389     0115  0813               	movf	19,w	;volatile
+  1390     0116  0088               	movwf	8	;volatile
+  1391                           
+  1392                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/PRE4_SLAVE.c: 72:            
+      +                           _delay((unsigned long)((250)*(8000000/4000000.0)));
+  1393     0117  30A6               	movlw	166
+  1394     0118  00F0               	movwf	??_isr
+  1395     0119                     u19_27:
+  1396     0119  0BF0               	decfsz	??_isr,f
+  1397     011A  2919               	goto	u19_27
+  1398     011B  0000               	nop
+  1399                           
+  1400                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/PRE4_SLAVE.c: 74:         }el
+      +                          se if(!SSPSTATbits.D_nA && SSPSTATbits.R_nW){
+  1401     011C  293C               	goto	i1l51
+  1402     011D                     i1l47:
+  1403     011D  1A94               	btfsc	20,5	;volatile
+  1404     011E  2920               	goto	u10_21
+  1405     011F  2921               	goto	u10_20
+  1406     0120                     u10_21:
+  1407     0120  293C               	goto	i1l51
+  1408     0121                     u10_20:
+  1409     0121                     i1l866:
+  1410     0121  1D14               	btfss	20,2	;volatile
+  1411     0122  2924               	goto	u11_21
+  1412     0123  2925               	goto	u11_20
+  1413     0124                     u11_21:
+  1414     0124  293C               	goto	i1l51
+  1415     0125                     u11_20:
+  1416     0125                     i1l868:
+  1417                           
+  1418                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/PRE4_SLAVE.c: 75:            
+      +                           z = SSPBUF;
+  1419     0125  1283               	bcf	3,5	;RP0=0, select bank0
+  1420     0126  1303               	bcf	3,6	;RP1=0, select bank0
+  1421     0127  0813               	movf	19,w	;volatile
+  1422     0128  00F9               	movwf	_z
+  1423     0129                     i1l870:
+  1424                           
+  1425                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/PRE4_SLAVE.c: 76:            
+      +                           BF = 0;
+  1426     0129  1683               	bsf	3,5	;RP0=1, select bank1
+  1427     012A  1303               	bcf	3,6	;RP1=0, select bank1
+  1428     012B  1014               	bcf	20,0	;volatile
+  1429                           
+  1430                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/PRE4_SLAVE.c: 77:            
+      +                           SSPBUF = adc_val;
+  1431     012C  0877               	movf	_adc_val,w
+  1432     012D  1283               	bcf	3,5	;RP0=0, select bank0
+  1433     012E  1303               	bcf	3,6	;RP1=0, select bank0
+  1434     012F  0093               	movwf	19	;volatile
+  1435     0130                     i1l872:
+  1436                           
+  1437                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/PRE4_SLAVE.c: 78:            
+      +                           SSPCONbits.CKP = 1;
+  1438     0130  1614               	bsf	20,4	;volatile
+  1439                           
+  1440                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/PRE4_SLAVE.c: 79:            
+      +                           _delay((unsigned long)((250)*(8000000/4000000.0)));
+  1441     0131  30A6               	movlw	166
+  1442     0132  00F0               	movwf	??_isr
+  1443     0133                     u20_27:
+  1444     0133  0BF0               	decfsz	??_isr,f
+  1445     0134  2933               	goto	u20_27
+  1446     0135  0000               	nop
+  1447     0136                     i1l53:	
+  1448                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/PRE4_SLAVE.c: 80:            
+      +                           while(SSPSTATbits.BF);
+  1449                           
+  1450     0136  1683               	bsf	3,5	;RP0=1, select bank1
+  1451     0137  1303               	bcf	3,6	;RP1=0, select bank1
+  1452     0138  1814               	btfsc	20,0	;volatile
+  1453     0139  293B               	goto	u12_21
+  1454     013A  293C               	goto	u12_20
+  1455     013B                     u12_21:
+  1456     013B  2936               	goto	i1l53
+  1457     013C                     u12_20:
+  1458     013C                     i1l51:
+  1459                           
+  1460                           ;C:/Users/Bryan Ortiz/Desktop/Digital2/LAB4/LAB4D2_SLAVE.X/PRE4_SLAVE.c: 83:         PIR
+      +                          1bits.SSPIF = 0;
+  1461     013C  1283               	bcf	3,5	;RP0=0, select bank0
+  1462     013D  1303               	bcf	3,6	;RP1=0, select bank0
+  1463     013E  118C               	bcf	12,3	;volatile
+  1464     013F                     i1l56:
+  1465     013F  0872               	movf	??_isr+2,w
+  1466     0140  008A               	movwf	10
+  1467     0141  0E71               	swapf	??_isr+1,w
+  1468     0142  0083               	movwf	3
+  1469     0143  0EFE               	swapf	btemp,f
+  1470     0144  0E7E               	swapf	btemp,w
+  1471     0145  0009               	retfie
+  1472     0146                     __end_of_isr:
+  1473     007E                     btemp	set	126	;btemp
+  1474     007E                     wtemp0	set	126
+  1475                           
+  1476                           	psect	intentry
+  1477     0004                     __pintentry:	
+  1478                           ;incstack = 0
+  1479                           ; Regs used in _isr: [wreg]
+  1480                           
+  1481     0004                     interrupt_function:
+  1482     007E                     saved_w	set	btemp
+  1483     0004  00FE               	movwf	btemp
+  1484     0005  0E03               	swapf	3,w
+  1485     0006  00F1               	movwf	??_isr+1
+  1486     0007  080A               	movf	10,w
+  1487     0008  00F2               	movwf	??_isr+2
+  1488     0009  120A  118A  28E9   	ljmp	_isr
+  1489                           
+  1490                           	psect	idloc
+  1491                           
+  1492                           ;Config register IDLOC0 @ 0x2000
+  1493                           ;	unspecified, using default values
+  1494     2000                     	org	8192
+  1495     2000  3FFF               	dw	16383
+  1496                           
+  1497                           ;Config register IDLOC1 @ 0x2001
+  1498                           ;	unspecified, using default values
+  1499     2001                     	org	8193
+  1500     2001  3FFF               	dw	16383
+  1501                           
+  1502                           ;Config register IDLOC2 @ 0x2002
+  1503                           ;	unspecified, using default values
+  1504     2002                     	org	8194
+  1505     2002  3FFF               	dw	16383
+  1506                           
+  1507                           ;Config register IDLOC3 @ 0x2003
+  1508                           ;	unspecified, using default values
+  1509     2003                     	org	8195
+  1510     2003  3FFF               	dw	16383
+  1511                           
+  1512                           	psect	config
+  1513                           
+  1514                           ;Config register CONFIG1 @ 0x2007
+  1515                           ;	Oscillator Selection bits
+  1516                           ;	FOSC = INTRC_NOCLKOUT, INTOSCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, I/O f
+      +                          unction on RA7/OSC1/CLKIN
+  1517                           ;	Watchdog Timer Enable bit
+  1518                           ;	WDTE = OFF, WDT disabled and can be enabled by SWDTEN bit of the WDTCON register
+  1519                           ;	Power-up Timer Enable bit
+  1520                           ;	PWRTE = OFF, PWRT disabled
+  1521                           ;	RE3/MCLR pin function select bit
+  1522                           ;	MCLRE = OFF, RE3/MCLR pin function is digital input, MCLR internally tied to VDD
+  1523                           ;	Code Protection bit
+  1524                           ;	CP = OFF, Program memory code protection is disabled
+  1525                           ;	Data Code Protection bit
+  1526                           ;	CPD = OFF, Data memory code protection is disabled
+  1527                           ;	Brown Out Reset Selection bits
+  1528                           ;	BOREN = OFF, BOR disabled
+  1529                           ;	Internal External Switchover bit
+  1530                           ;	IESO = OFF, Internal/External Switchover mode is disabled
+  1531                           ;	Fail-Safe Clock Monitor Enabled bit
+  1532                           ;	FCMEN = OFF, Fail-Safe Clock Monitor is disabled
+  1533                           ;	Low Voltage Programming Enable bit
+  1534                           ;	LVP = OFF, RB3 pin has digital I/O, HV on MCLR must be used for programming
+  1535                           ;	In-Circuit Debugger Mode bit
+  1536                           ;	DEBUG = 0x1, unprogramme  1537     2007                     	org	8199
+  1538     2007  20D4               	dw	8404
+  1539                           
+  1540                           ;Config register CONFIG2 @ 0x2008
+  1541                           ;	Brown-out Reset Selection bit
+  1542                           ;	BOR4V = BOR40V, Brown-out Reset set to 4.0V
+  1543                           ;	Flash Program Memory Self Write Enable bits
+  1544                           ;	WRT = OFF, Write protection off
+  1545     2008                     	org	8200
+  1546     2008  3FFF               	dw	16383
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        0
+    BSS         3
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMMON           14      7      10
+    BANK0            80      4       4
+    BANK1            80      0       0
+    BANK3            96      0       0
+    BANK2            96      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMMON
+
+    _main->_adc_read
+    _setup->_adc_init
+
+Critical Paths under _isr in COMMON
+
+    None.
+
+Critical Paths under _main in BANK0
+
+    _main->_adc_read
+
+Critical Paths under _isr in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _isr in BANK1
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _isr in BANK3
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _isr in BANK2
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 2     2      0     147
+                                              2 BANK0      2     2      0
+                           _adc_read
+                              _setup
+ ---------------------------------------------------------------------------------
+ (1) _setup                                                0     0      0     113
+                     _I2C_Slave_Init
+                           _adc_init
+ ---------------------------------------------------------------------------------
+ (2) _adc_init                                             3     1      2      98
+                                              3 COMMON     3     1      2
+ ---------------------------------------------------------------------------------
+ (2) _I2C_Slave_Init                                       1     1      0      15
+                                              3 COMMON     1     1      0
+ ---------------------------------------------------------------------------------
+ (1) _adc_read                                             6     4      2      34
+                                              3 COMMON     4     2      2
+                                              0 BANK0      2     2      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 2
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (3) _isr                                                  3     3      0       0
+                                              0 COMMON     3     3      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 3
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _adc_read
+   _setup
+     _I2C_Slave_Init
+     _adc_init
+
+ _isr (ROOT)
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BITCOMMON            E      0       0       0        0.0%
+EEDATA             100      0       0       0        0.0%
+NULL                 0      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+COMMON               E      7       A       1       71.4%
+BITSFR0              0      0       0       1        0.0%
+SFR0                 0      0       0       1        0.0%
+BITSFR1              0      0       0       2        0.0%
+SFR1                 0      0       0       2        0.0%
+STACK                0      0       0       2        0.0%
+ABS                  0      0       E       3        0.0%
+BITBANK0            50      0       0       4        0.0%
+BITSFR3              0      0       0       4        0.0%
+SFR3                 0      0       0       4        0.0%
+BANK0               50      4       4       5        5.0%
+BITSFR2              0      0       0       5        0.0%
+SFR2                 0      0       0       5        0.0%
+BITBANK1            50      0       0       6        0.0%
+BANK1               50      0       0       7        0.0%
+BITBANK3            60      0       0       8        0.0%
+BANK3               60      0       0       9        0.0%
+BITBANK2            60      0       0      10        0.0%
+BANK2               60      0       0      11        0.0%
+DATA                 0      0       E      12        0.0%
+
+
+Microchip Technology PIC Macro Assembler V2.40 build 20220703182018 
+Symbol Table                                                                                   Tue Aug 08 15:47:30 2023
+
+                      _z 0079              _SSPSTATbits 0094                       _BF 04A0  
+                     l67 0160                      l122 0194                      l160 005D  
+                    l152 0017                      l161 0067                      l153 00D4  
+                    l170 0198                      l162 0071                      l154 0021  
+                    l163 007B                      l155 002B                      l172 019C  
+                    l164 0085                      l156 0035                      l173 01A8  
+                    l165 008F                      l157 003F                      l166 0099  
+                    l158 0049                      l167 00E8                      l159 0053  
+                    l810 017C                      l820 018E                      l812 018A  
+                    l822 0191                      l814 018B                      l816 018C  
+                    l818 018D                      _GIE 005F                      u160 019C  
+                    u161 019B                      u177 0173                      u187 00E6  
+                    _isr 00E9                     l1020 00D8                     l1030 00E4  
+                   l1022 00DC                     l1014 0016                     l1024 00DF  
+                   l1040 015A                     l1026 00E0                     l1106 00A8  
+                   l1018 00A3                     l1028 00E1                     l1036 0146  
+                   l1038 0152                     l1080 0161                     l1074 0195  
+                   l1082 0166                     l1076 019D                     l1084 016D  
+                   _ADIF 0066                     ?_isr 0070                     _PEIE 005E  
+                   i1l51 013C                     i1l53 0136                     i1l47 011D  
+                   i1l48 010D                     i1l56 013F                     u4_20 00EF  
+                   u4_21 00EE                     u5_20 00F4                     u5_21 00F3  
+                   u6_20 00F8                     u6_21 00F7                     u7_20 0103  
+                   u7_21 0102                     u8_20 0107                     u8_21 0106  
+                   u9_20 0113                     u9_21 0112                     _dato 0078  
+                   _main 0161                     btemp 007E                     start 000C  
+                  ??_isr 0070                    ?_main 0070                    _ANSEL 0188  
+                  i1l840 00E9                    i1l850 00FB                    i1l842 00EF  
+                  i1l860 010B                    i1l852 00FC                    i1l844 00F4  
+                  i1l870 0129                    i1l862 010C                    i1l854 00FD  
+                  i1l846 00F8                    i1l872 0130                    i1l864 0113  
+                  i1l856 0103                    i1l848 00FA                    i1l866 0121  
+                  i1l858 0107                    i1l868 0125                    u10_20 0121  
+                  u10_21 0120                    u11_20 0125                    u11_21 0124  
+                  u12_20 013C                    u12_21 013B                    u20_27 0133  
+                  _PORTB 0006                    _PORTD 0008                    u19_27 0119  
+                  _TRISB 0086                    _TRISD 0088                    _SSPIE 0463  
+                  _SSPIF 0063                    _setup 0146                    pclath 000A  
+                  status 0003                    wtemp0 007E          __initialization 000F  
+           __end_of_main 017B                   ??_main 0022                   _ADRESH 001E  
+                 ?_setup 0070                   _ANSELH 0189         __end_of_adc_init 00E9  
+       __end_of_adc_read 01A9                   _SSPADD 0093                   _TRISC3 043B  
+                 _TRISC4 043C                   _SSPBUF 0013                   _SSPCON 0014  
+                 saved_w 007E         adc_read@adcValue 0020  __end_of__initialization 0012  
+         __pcstackCOMMON 0070            __end_of_setup 0161                  ??_setup 0076  
+  I2C_Slave_Init@address 0073               __pmaintext 0161               __pintentry 0004  
+              ?_adc_init 0073                ?_adc_read 0073                  _SSPCON2 0091  
+                _SSPSTAT 0094                  _adc_val 0077                _ANSELbits 0188  
+             ??_adc_init 0075               ??_adc_read 0075                  __ptext1 0146  
+                __ptext2 0016                  __ptext3 017B                  __ptext4 0195  
+                __ptext5 00E9     end_of_initialization 0012           _I2C_Slave_Init 017B  
+              _PORTAbits 0005                _PORTBbits 0006                _PORTEbits 0009  
+              _TRISAbits 0085                _TRISBbits 0086                _TRISCbits 0087  
+              _TRISEbits 0089   __end_of_I2C_Slave_Init 0195      start_initialization 000F  
+            __end_of_isr 0146          ?_I2C_Slave_Init 0070          adc_init@channel 0073  
+            __pbssCOMMON 0077                ___latbits 0002            __pcstackBANK0 0020  
+      interrupt_function 0004                 _PIR1bits 000C               _ADCON0bits 001F  
+             _ADCON1bits 009F                 _adc_init 0016                 _adc_read 0195  
+             _ANSELHbits 0189         ??_I2C_Slave_Init 0073                 intlevel1 0000  
+            _SSPCON2bits 0091               _SSPCONbits 0014  
